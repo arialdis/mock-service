@@ -1,0 +1,714 @@
+openapi: 3.0.3
+
+info:
+  title: "Mock Service"
+  description: "A REST service for mocking API calls."
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:3000/v1/mock
+
+paths:
+  "/responses/{responseId}/delay/{delay}":
+    post:
+      tags:
+        - mocks
+      summary: mocks a POST request
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: delay
+          schema:
+            type: integer
+          required: true
+          description: response delay in milliseconds
+        - in: query
+          name: any
+          schema:
+            type: string
+          description: accepts any query params
+        - in: header
+          name: any
+          schema:
+            type: string
+          description: accepts any headers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              nullable: true
+      responses:
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+        default:
+          $ref: "#/components/responses/Unknown"
+    get:
+      tags:
+        - mocks
+      summary: mocks a GET request
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: delay
+          schema:
+            type: integer
+          required: true
+          description: response delay in milliseconds
+        - in: query
+          name: any
+          schema:
+            type: string
+          description: accepts any query params
+        - in: header
+          name: any
+          schema:
+            type: string
+          description: accepts any headers
+      responses:
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+        default:
+          $ref: "#/components/responses/Unknown"
+    put:
+      tags:
+        - mocks
+      summary: mocks a PUT request
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: delay
+          schema:
+            type: integer
+          required: true
+          description: response delay in milliseconds
+        - in: query
+          name: any
+          schema:
+            type: string
+          description: accepts any query params
+        - in: header
+          name: any
+          schema:
+            type: string
+          description: accepts any headers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              nullable: true
+      responses:
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+        default:
+          $ref: "#/components/responses/Unknown"
+    patch:
+      tags:
+        - mocks
+      summary: mocks a PATCH request
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: delay
+          schema:
+            type: integer
+          required: true
+          description: response delay in milliseconds
+        - in: query
+          name: any
+          schema:
+            type: string
+          description: accepts any query params
+        - in: header
+          name: any
+          schema:
+            type: string
+          description: accepts any headers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              nullable: true
+      responses:
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+        default:
+          $ref: "#/components/responses/Unknown"
+    delete:
+      tags:
+        - mocks
+      summary: mocks a DELETE request
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: delay
+          schema:
+            type: integer
+          required: true
+          description: response delay in milliseconds
+        - in: query
+          name: any
+          schema:
+            type: string
+          description: accepts any query params
+        - in: header
+          name: any
+          schema:
+            type: string
+          description: accepts any headers
+      responses:
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+        default:
+          $ref: "#/components/responses/Unknown"
+  "/core/responses":
+    post:
+      tags:
+        - core
+      summary: creates a mock response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Response"
+      responses:
+        "201":
+          $ref: "#/components/responses/201ResponseObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    get:
+      tags:
+        - core
+      summary: fetches all mock responses
+      responses:
+        "200":
+          $ref: "#/components/responses/200ResponseList"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/core/responses/{responseId}":
+    get:
+      tags:
+        - core
+      summary: fetches a mock response
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200ResponseObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    put:
+      tags:
+        - core
+      summary: updates a mock response
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Response"
+      responses:
+        "200":
+          $ref: "#/components/responses/200ResponseObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    delete:
+      tags:
+        - core
+      summary: deletes a mock response
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200ResponseObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/core/responses/{responseId}/headers":
+    post:
+      tags:
+        - core
+      summary: creates a header
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Header"
+      responses:
+        "201":
+          $ref: "#/components/responses/201HeaderObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    get:
+      tags:
+        - core
+      summary: fetches all headers for a response
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200HeaderList"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/core/responses/{responseId}/headers/{headerId}":
+    put:
+      tags:
+        - core
+      summary: updates a header
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: headerId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Header"
+      responses:
+        "200":
+          $ref: "#/components/responses/200HeaderObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    delete:
+      tags:
+        - core
+      summary: deletes a header
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: headerId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200HeaderObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/core/responses/{responseId}/cookies":
+    post:
+      tags:
+        - core
+      summary: creates a cookie
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cookie"
+      responses:
+        "201":
+          $ref: "#/components/responses/201CookieObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    get:
+      tags:
+        - core
+      summary: fetches all cookies for a response
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200CookieList"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/core/responses/{responseId}/cookies/{cookieId}":
+    put:
+      tags:
+        - core
+      summary: updates a cookie
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: cookieId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cookie"
+      responses:
+        "200":
+          $ref: "#/components/responses/200CookieObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+    delete:
+      tags:
+        - core
+      summary: deletes a cookie
+      parameters:
+        - in: path
+          name: responseId
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: cookieId
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200CookieObj"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "404":
+          $ref: "#/components/responses/404Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  "/app-info":
+    get:
+      tags:
+        - utils
+      summary: displays app information
+      responses:
+        "200":
+          $ref: "#/components/responses/200AppInfo"
+
+components:
+  schemas:
+    Response:
+      properties:
+        responseId:
+          type: integer
+          readOnly: true
+        status:
+          type: integer
+        body:
+          type: object
+        headers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Header"
+        cookies:
+          type: array
+          items:
+            $ref: "#/components/schemas/Cookie"
+        createdAt:
+          type: string
+          readOnly: true
+        updatedAt:
+          type: string
+          readOnly: true
+      required:
+        - status
+    ResponseDTO:
+      properties:
+        response:
+          $ref: "#/components/schemas/Response"
+    ResponseListDTO:
+      properties:
+        responses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Response"
+    Header:
+      properties:
+        headerId:
+          type: integer
+          readOnly: true
+        key:
+          type: string
+        value:
+          type: string
+        createdAt:
+          type: string
+          readOnly: true
+        updatedAt:
+          type: string
+          readOnly: true
+      required:
+        - key
+        - value
+    HeaderDTO:
+      properties:
+        header:
+          $ref: "#/components/schemas/Header"
+    HeaderListDTO:
+      properties:
+        headers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Header"
+    Cookie:
+      properties:
+        cookieId:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        value:
+          type: string
+        maxAge:
+          type: integer
+        domain:
+          type: string
+        path:
+          type: string
+        secure:
+          type: boolean
+        httpOnly:
+          type: boolean
+        sameSite:
+          type: string
+          enum: [Strict, Lax, None]
+        createdAt:
+          type: string
+          readOnly: true
+        updatedAt:
+          type: string
+          readOnly: true
+      required:
+        - name
+        - value
+    CookieDTO:
+      properties:
+        cookie:
+          $ref: "#/components/schemas/Cookie"
+    CookieListDTO:
+      properties:
+        cookies:
+          type: array
+          items:
+            $ref: "#/components/schemas/Cookie"
+    AppInfo:
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        branch:
+          type: string
+        commit:
+          type: string
+        message:
+          type: string
+        date:
+          type: string
+          format: date-time
+    APIError:
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+  responses:
+    200AppInfo:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AppInfo"
+    200ResponseObj:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ResponseDTO"
+    200ResponseList:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ResponseListDTO"
+    201ResponseObj:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ResponseDTO"
+    200HeaderList:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HeaderListDTO"
+    200HeaderObj:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HeaderDTO"
+    201HeaderObj:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HeaderDTO"
+    200CookieList:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CookieListDTO"
+    200CookieObj:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CookieDTO"
+    201CookieObj:
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CookieDTO"
+    400Error:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/APIError"
+    404Error:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/APIError"
+    500Error:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/APIError"
+    Unknown:
+      description: A dynamic response
+      content:
+        application/json:
+          schema:
+            nullable: true
