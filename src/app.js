@@ -14,6 +14,7 @@ const appInfo = require("../package.json");
 const gitInfo = require("git-repo-info")();
 const helmet = require("helmet");
 const morgan = require("morgan");
+const cors = require("cors");
 
 // connect to db
 mongoDB.connect();
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan(":date[iso] :method :url :status :response-time ms"));
+app.use(cors());
 
 // set up routes
 app.use("/v1/mock/responses", mockRouter);
