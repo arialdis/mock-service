@@ -576,6 +576,7 @@ components:
           type: string
         maxAge:
           type: integer
+          description: "in milliseconds"
         domain:
           type: string
         path:
