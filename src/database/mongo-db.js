@@ -9,12 +9,7 @@ module.exports.connect = async () => {
   try {
     console.log(`Connecting to database [${MONGODB_URL}]...`);
 
-    await mongoose.connect(MONGODB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true
-    });
+    await mongoose.connect(MONGODB_URL);
 
     console.log(`Successfully connected to database`);
   } catch (error) {

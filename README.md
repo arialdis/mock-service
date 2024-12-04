@@ -2,33 +2,33 @@
 
 A REST service for mocking API calls.
 
-## Dependencies
+## Set up MongoDB
 
-- MongoDB
-  - Mock responses are stored in a MongoDB collection, so a running instance of MongoDB is required for setup.
+```bash
+# run mongodb in a local docker container
+docker run -d --name my-local-mongodb -p 27017:27017 mongo
+```
 
-## Setup
+## Run Service
 
-- Clone repository
+```bash
+# clone repo
+git clone https://github.com/arialdis/mock-service.git
+cd mock-service
 
-  ```bash
-  git clone https://github.com/Arialdis/mock-service.git
-  ```
+# install dependencies
+npm install
 
-- Install dependencies
+# create .env file
+cp .env.example .env
 
-  ```bash
-  npm install
-  ```
+# update .env file values if needed.
+#   PORT: the port number where the service will run.
+#   MONGODB_URL: the connection string to your MongoDB instance.
 
-- Create a copy of **.env.example** and rename it to **.env**
-- Update the **.env** file if needed
-  - PORT: the port number where the service will run
-  - MONGODB_URL: the connection string to your running MongoDB instance
-- Start the application
-  ```bash
-  npm start
-  ```
+# start service
+npm start
+```
 
 ## Documentation
 
@@ -42,7 +42,7 @@ The following request creates a mock response by defining its HTTP status and JS
 
 **Request**
 
-```json
+```bash
 curl --location --request POST 'http://localhost:3000/v1/mock/core/responses' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -77,7 +77,7 @@ The following request creates a mock response with a header and cookie.
 
 **Request**
 
-```json
+```bash
 curl --location --request POST 'http://localhost:3000/v1/mock/core/responses' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -146,7 +146,7 @@ The mock service replies to the following request with the mock response that wa
 
 **Request**
 
-```json
+```bash
 curl --location --request PATCH 'http://localhost:3000/v1/mock/responses/607fce8e19edc05b5870d69e/delay/500'
 ```
 
